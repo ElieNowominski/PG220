@@ -1,16 +1,34 @@
 package grille;
 
+import player.Human;
+import player.IA;
+import player.Player;
+
 import java.util.Scanner;
 
 public class Grille {
     int columnLength;
     int lineLength;
+    public Cell[] tabCoins;
 
-    Grille(int columnLength, int lineLength){
+    public Grille(int columnLength, int lineLength){
         this.columnLength = columnLength;
         this.lineLength = lineLength;
+        this.tabCoins = initTab(columnLength, lineLength);
     }
 
+    public Cell[] initTab(int columnLength, int lineLength){
+        Cell[] Tab = new Cell[columnLength*lineLength];
+        int i;
+        int j=0;
+        for(i=0; i<columnLength*lineLength; i++){
+            if(i%lineLength == 0){
+                j++;
+            }
+            Tab[i] = new Cell(0,i,j);
+        }
+        return Tab;
+    }
     boolean OutsideGrille(Cell c){
         if(c.getX() > this.columnLength){
             return true;
@@ -24,35 +42,23 @@ public class Grille {
     }
 
 
-    public static void main(String[] args) {
-        System.out.println("Joueur1?");
-
-        String type = handle_input();
-        String name = handle_input();
-
-        Player p1 = handle_type(type,name);
-
-        System.out.println("Joueur2?");
-
-        String type2 = handle_input();
-        String name2 = handle_input();
-
-        Player p2 = handle_type(type2,name2);
-
-        p1.play();
-        p2.play();
-    }
-    private static Player handle_type(String type, String name){
+    public static Player handle_type(String type, String name, int noPlayer){
         if(type.equals("humain")){
-            return new Human(1,name);
+            return new Human(noPlayer,name);
         }
         else{
-            return new IA(name, 1);
+            return new IA(noPlayer, name);
         }
     }
-    private static String handle_input(){
+    public static String handle_input(){
         Scanner sc1 = new Scanner(System.in);
         return sc1.nextLine();
     }
 
+    public int getcolumnLength(){
+        return this.columnLength;
+    }
+    public int getlineLength(){
+        return this.lineLength;
+    }
 }

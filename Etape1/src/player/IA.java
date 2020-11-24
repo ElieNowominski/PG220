@@ -1,9 +1,11 @@
-package grille;
+package player;
 
-public class IA extends Player{
+import player.Player;
+
+public class IA extends Player {
     String name;
 
-    IA(String name, int type){
+    public IA(int type, String name){
         super(type);
         this.name = name;
     }

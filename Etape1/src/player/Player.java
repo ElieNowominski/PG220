@@ -1,6 +1,8 @@
-package grille;
+package player;
 
-public abstract class Player extends CoinType{
+import grille.CoinType;
+
+public abstract class Player extends CoinType {
 
     public Player(int type) {
         super(type);

@@ -1,6 +1,8 @@
-package grille;
+package player;
 
-public class Human extends Player{
+
+
+public class Human extends Player {
     String name;
 
     public Human(int type, String name) {
