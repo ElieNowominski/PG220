@@ -1,39 +1,50 @@
 package grille;
 
-import player.Human;
-import player.IA;
-import player.Player;
-
-import java.util.Scanner;
-
 public class Grille {
-    int columnLength;
-    int lineLength;
-    public Cell[] tabCoins;
+    int columnNbr;
+    int lineNbr;
+    public int[][] tabCoins;
 
-    public Grille(int columnLength, int lineLength){
-        this.columnLength = columnLength;
-        this.lineLength = lineLength;
-        this.tabCoins = initTab(columnLength, lineLength);
+    public Grille(int columnNbr, int lineNbr){
+        this.columnNbr = columnNbr;
+        this.lineNbr = lineNbr;
+        this.tabCoins = initTab(columnNbr, lineNbr);
     }
 
-    public Cell[] initTab(int columnLength, int lineLength){
-        Cell[] Tab = new Cell[columnLength*lineLength];
-        int i;
-        int j=0;
-        for(i=0; i<columnLength*lineLength; i++){
-            if(i%lineLength == 0){
-                j++;
+    public int[][] initTab(int columnNbr, int lineNbr){
+        int[][] Tab = new int[lineNbr][columnNbr];
+        for(int i=0; i<lineNbr; i++){
+            for (int j=0; j<columnNbr; j++){
+                Tab[i][j] = 0;
             }
-            Tab[i] = new Cell(0,i,j);
         }
         return Tab;
     }
+
+    public void playCoin(int column, int[][] tab, int turn){
+        int line = getLastPos(tab,column);
+        if (turn % 2 == 0) {
+            tab[line - 1][column - 1] = 2;
+        }
+        else {
+            tab[line - 1][column - 1] = 1;
+        }
+    }
+
+    public int getLastPos(int[][] tab, int column){
+        column = column - 1;
+        int line = this.lineNbr;
+        while ((tab[line - 1][column] != 0) && (line > 0)){
+            line--;
+        }
+        return line;
+    }
+
     boolean OutsideGrille(Cell c){
-        if(c.getX() > this.columnLength){
+        if(c.getX() > this.columnNbr){
             return true;
         }
-        else if(c.getY() > this.lineLength){
+        else if(c.getY() > this.lineNbr){
             return true;
         }
         else {
@@ -41,24 +52,10 @@ public class Grille {
         }
     }
 
-
-    public static Player handle_type(String type, String name, int noPlayer){
-        if(type.equals("humain")){
-            return new Human(noPlayer,name);
-        }
-        else{
-            return new IA(noPlayer, name);
-        }
+    public int getcolumnNbr(){
+        return this.columnNbr;
     }
-    public static String handle_input(){
-        Scanner sc1 = new Scanner(System.in);
-        return sc1.nextLine();
-    }
-
-    public int getcolumnLength(){
-        return this.columnLength;
-    }
-    public int getlineLength(){
-        return this.lineLength;
+    public int getlineNbr(){
+        return this.lineNbr;
     }
 }
