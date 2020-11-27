@@ -25,13 +25,18 @@ public class Game {
         Player p2 = handleType(input.getType(),input.getName(),2);
 
         Display.display_grid(grid);
-
-        while(true){
+        boolean game = true;
+        while(game){
             turn++;
-            System.out.println("$");
+            System.out.println("Saisissez une colonne :");
+            System.out.print("$");
             input = Input.handleCoinInput();
             grid.playCoin(input.getColumn(),grid.tabCoins,turn);
             Display.display_grid(grid);
+            if(Grille.tabIsFull(grid)){
+                System.out.println("Égalité");
+                game = false;
+            }
         }
 
     }

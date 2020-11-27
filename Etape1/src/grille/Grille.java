@@ -40,22 +40,22 @@ public class Grille {
         return line;
     }
 
-    boolean OutsideGrille(Cell c){
-        if(c.getX() > this.columnNbr){
-            return true;
-        }
-        else if(c.getY() > this.lineNbr){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-    public int getcolumnNbr(){
+    public int getColumnNbr(){
         return this.columnNbr;
     }
-    public int getlineNbr(){
+    public int getLineNbr(){
         return this.lineNbr;
+    }
+
+    public static boolean tabIsFull(Grille grid){
+        for(int i=0; i<grid.getLineNbr(); i++){
+            for(int j=0; j<grid.getColumnNbr(); j++){
+                if(grid.tabCoins[i][j] == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

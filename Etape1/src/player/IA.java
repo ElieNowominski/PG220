@@ -12,7 +12,7 @@ public class IA extends Player {
 
     @Override
     public int play() {
-        System.out.println("J'ai pas envie de jouer");
+
         return 0;
     }
 }
