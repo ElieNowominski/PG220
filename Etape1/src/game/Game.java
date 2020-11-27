@@ -28,7 +28,7 @@ public class Game {
 
         while(true){
             turn++;
-            System.out.println("$");
+            System.out.print("$");
             input = Input.handleCoinInput();
             grid.playCoin(input.getColumn(),grid.tabCoins,turn);
             Display.display_grid(grid);

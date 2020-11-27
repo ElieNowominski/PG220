@@ -39,18 +39,7 @@ public class Grille {
         }
         return line;
     }
-
-    boolean OutsideGrille(Cell c){
-        if(c.getX() > this.columnNbr){
-            return true;
-        }
-        else if(c.getY() > this.lineNbr){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    
 
     public int getcolumnNbr(){
         return this.columnNbr;
