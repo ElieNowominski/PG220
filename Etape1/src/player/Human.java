@@ -1,6 +1,9 @@
 package player;
 
 
+import display.Display;
+import game.Input;
+import grille.Grille;
 
 public class Human extends Player {
     String name;
@@ -11,7 +14,11 @@ public class Human extends Player {
     }
 
     @Override
-    public int play() {
-        return 0;
+    public void play(Grille grid) {
+        System.out.println("Saisissez une colonne :");
+        System.out.print("$");
+        Input input = Input.handleCoinInput(grid.getColumnNbr());
+        grid.playCoin(input.getColumn(),grid.tabCoins, this.type);
+        Display.display_grid(grid);
     }
 }

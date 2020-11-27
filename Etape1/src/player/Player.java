@@ -1,6 +1,7 @@
 package player;
 
 import grille.CoinType;
+import grille.Grille;
 
 public abstract class Player extends CoinType {
 
@@ -8,5 +9,6 @@ public abstract class Player extends CoinType {
         super(type);
     }
 
-    public abstract int play();
+    public abstract void play(Grille grid);
+
 }
