@@ -13,16 +13,23 @@ public class Input {
         this.type = type;
         this.column = column;
     }
+
     public static Input handleCoinInput(){
         Scanner sc = new Scanner(System.in);
-        int column = sc.nextInt();
-        if (!(0 <= column && column < 8)) {
-            System.out.println("La colonne doit être entre 0 et 7");
-            return new Input("","",0);
-        }
-        else {
-            return new Input("", "", column);
-        }
+
+            String input = sc.nextLine();
+            if (input.equals("sortir")){
+                System.out.print("Vous quittez le jeu");
+                System.exit(1);
+            }
+            int column = Integer.parseInt(input);
+            if (!(0 <= column && column < 8)) {
+                System.out.println("La colonne doit être entre 0 et 7");
+                return new Input("", "", 0);
+            } else {
+                return new Input("", "", column);
+            }
+
     }
 
 
