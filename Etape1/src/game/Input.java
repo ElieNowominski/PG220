@@ -1,6 +1,5 @@
 package game;
 
-
 import java.util.Scanner;
 
 public class Input {
@@ -31,7 +30,6 @@ public class Input {
             }
 
     }
-
 
     public static Input handleInput(){
         Scanner sc = new Scanner(System.in);
