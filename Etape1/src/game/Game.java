@@ -43,10 +43,10 @@ public class Game {
     }
     public static Player handleType(String type, String name, int noPlayer){
         if(type.equals("humain")){
-            return new Human(noPlayer,name);
+            return new Human(noPlayer,0,name);
         }
         else{
-            return new IA(noPlayer, name);
+            return new IA(noPlayer,0,name);
         }
     }
 }

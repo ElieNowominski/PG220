@@ -9,8 +9,8 @@ import java.util.Random;
 public class IA extends Player {
     String name;
 
-    public IA(int type, String name){
-        super(type);
+    public IA(int type, int manche, String name){
+        super(type,manche);
         this.name = name;
     }
 

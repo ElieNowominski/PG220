@@ -1,12 +1,14 @@
 package player;
 
-import grille.CoinType;
 import grille.Grille;
 
-public abstract class Player extends CoinType {
+public abstract class Player{
+    public int type;
+    int manche;
 
-    public Player(int type) {
-        super(type);
+    public Player(int type, int manche) {
+        this.type = type;
+        this.manche = manche;
     }
 
     public abstract void play(Grille grid);

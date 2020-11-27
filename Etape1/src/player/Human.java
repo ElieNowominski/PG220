@@ -8,8 +8,8 @@ import grille.Grille;
 public class Human extends Player {
     String name;
 
-    public Human(int type, String name) {
-        super(type);
+    public Human(int type, int manche, String name) {
+        super(type,manche);
         this.name = name;
     }
 
