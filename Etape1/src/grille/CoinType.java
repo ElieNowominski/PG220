@@ -1,7 +1,7 @@
 package grille;
 
 public class CoinType {
-    int type;
+    public int type;
 
     public CoinType(int type){
         this.type = type;

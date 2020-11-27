@@ -14,7 +14,7 @@ public class Input {
         this.column = column;
     }
 
-    public static Input handleCoinInput(){
+    public static Input handleCoinInput(int columnNbr){
         Scanner sc = new Scanner(System.in);
 
             String input = sc.nextLine();
@@ -24,7 +24,7 @@ public class Input {
             }
             int column = Integer.parseInt(input);
             if (!(0 <= column && column < 8)) {
-                System.out.println("La colonne doit être entre 0 et 7");
+                System.out.println("La colonne doit être entre 1 et "+columnNbr);
                 return new Input("", "", 0);
             } else {
                 return new Input("", "", column);
