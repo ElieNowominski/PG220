@@ -1,5 +1,7 @@
 package grille;
 
+import game.Historique;
+
 public class Grille {
     int columnNbr;
     int lineNbr;
@@ -29,6 +31,7 @@ public class Grille {
         else {
             tab[line - 1][column - 1] = 1;
         }
+
     }
 
     public int getLastPos(int[][] tab, int column){

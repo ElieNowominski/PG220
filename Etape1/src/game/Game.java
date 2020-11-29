@@ -15,13 +15,13 @@ public class Game {
         Input input = Input.handleInput();
         // System.out.println("" + input.getName());  // test si les infos sont bien recupérées
         // System.out.println("" + input.getType());
-
+        Historique.writeNameType(input.getName(),input.getType(),1);
         Player p1 = handleType(input.getType(),input.getName(),1);
 
         System.out.println("Joueur 2?");
         input = Input.handleInput();
 
-
+        Historique.writeNameType(input.getName(),input.getType(),2);
         Player p2 = handleType(input.getType(),input.getName(),2);
 
         Display.display_grid(grid);
@@ -47,6 +47,14 @@ public class Game {
         }
         else{
             return new IA(noPlayer,0,name);
+        }
+    }
+    public static void winRound(Player player){
+        System.out.print(player.name + "gagne la manche");
+        player.manche++;
+        if (player.manche == 3){
+            System.out.print(player.name + "gagne la partie");
+            System.exit(1);
         }
     }
 }
