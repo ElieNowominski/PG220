@@ -4,11 +4,13 @@ public class Grille {
     int columnNbr;
     int lineNbr;
     public int[][] tabCoins;
+    public int[] lastCoin;
 
     public Grille(int columnNbr, int lineNbr){
         this.columnNbr = columnNbr;
         this.lineNbr = lineNbr;
         this.tabCoins = initTab(columnNbr, lineNbr);
+        this.lastCoin = new int[2];
     }
 
     public int[][] initTab(int columnNbr, int lineNbr){
@@ -29,6 +31,8 @@ public class Grille {
         else {
             tab[line - 1][column - 1] = 1;
         }
+        this.lastCoin[0] = line-1;
+        this.lastCoin[1] = column-1;
     }
 
     public int getLastPos(int[][] tab, int column){
