@@ -7,11 +7,9 @@ import game.Input;
 import java.util.Random;
 
 public class IA extends Player {
-    String name;
 
     public IA(int type, int manche, String name){
-        super(type,manche);
-        this.name = name;
+        super(type,manche,name);
     }
 
     @Override
@@ -21,4 +19,42 @@ public class IA extends Player {
         Display.display_grid(grid);
 
     }
+
+
+    /*class Game
+    {
+        Grille g;
+        void initialize();
+        void run()
+        {
+            while(!hasWon)
+            {
+                for(int i = 0;i<2;i++)
+                {
+                    int numCol = player[i].jouer();
+                    g.ajouterToken(i,numCol);
+                    if(g.Victory())
+                    {
+                        hasWon = true;
+                    }
+                }
+            }
+        }
+
+    }
+
+    main(String[] arg)
+    {
+
+        Game g = new Game();
+        g.initialize();
+        g.run();
+    }*/
+
+
+
+
+
+
+
 }

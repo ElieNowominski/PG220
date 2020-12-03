@@ -1,5 +1,7 @@
 package grille;
 
+import game.Historique;
+
 public class Grille {
     int columnNbr;
     int lineNbr;

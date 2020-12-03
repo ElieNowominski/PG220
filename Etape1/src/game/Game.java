@@ -17,13 +17,13 @@ public class Game {
         Input input = Input.handleInput();
         // System.out.println("" + input.getName());  // test si les infos sont bien recupérées
         // System.out.println("" + input.getType());
-
+        Historique.writeNameType(input.getName(),input.getType(),1);
         Player p1 = handleType(input.getType(),input.getName(),1);
 
         System.out.println("Joueur 2?");
         input = Input.handleInput();
 
-
+        Historique.writeNameType(input.getName(),input.getType(),2);
         Player p2 = handleType(input.getType(),input.getName(),2);
 
         Display.display_grid(grid);
@@ -55,58 +55,66 @@ public class Game {
             return new IA(noPlayer,0,name);
         }
     }
-    public static int win(Grille grid, int noPlayer, int x, int y){
+    public static int win(Grille grid, int noPlayer, int x, int y) {
         int compteur;
         compteur = 0;
-        int xMin = min(x,3);
-        int xMax = min(grid.getLineNbr()-1 - x, 3);
-        int yMin = min(y,3);
-        int yMax = min(grid.getColumnNbr()-1 - y, 3);
-        for(int i=x-xMin; i<=x+xMax; i++){   //Victoire sur la ligne
-            if(grid.tabCoins[i][y] == noPlayer){
+        int xMin = min(x, 3);
+        int xMax = min(grid.getLineNbr() - 1 - x, 3);
+        int yMin = min(y, 3);
+        int yMax = min(grid.getColumnNbr() - 1 - y, 3);
+        for (int i = x - xMin; i <= x + xMax; i++) {   //Victoire sur la ligne
+            if (grid.tabCoins[i][y] == noPlayer) {
                 compteur++;
             }
-            else{
+            else {
                 compteur = 0;
             }
-            if(compteur == 4){
+            if (compteur == 4) {
                 return noPlayer;
             }
         }
-        for(int i=y-yMin; i<=y+yMax; i++){  //Victoire sur la colonne
-            if(grid.tabCoins[x][i] == noPlayer){
+        for (int i = y - yMin; i <= y + yMax; i++) {  //Victoire sur la colonne
+            if (grid.tabCoins[x][i] == noPlayer) {
                 compteur++;
             }
-            else{
+            else {
                 compteur = 0;
             }
-            if(compteur == 4){
+            if (compteur == 4) {
                 return noPlayer;
             }
         }
-        for(int i=y-yMin,j=x-xMin; i<=y+yMax && j<=x+xMax; i++, j++){   //Victoire sur la diagonale gauche vers droite
-            if(grid.tabCoins[j][i] == noPlayer){
+        for (int i = y - yMin, j = x - xMin; i <= y + yMax && j <= x + xMax; i++, j++) {   //Victoire sur la diagonale gauche vers droite
+            if (grid.tabCoins[j][i] == noPlayer) {
                 compteur++;
             }
-            else{
+            else {
                 compteur = 0;
             }
-            if(compteur == 4){
+            if (compteur == 4) {
                 return noPlayer;
             }
         }
-        for(int i=y+yMax,j=x-xMin; i>=y-yMin && j<=x+xMax; i--, j++){   //Victoire sur la diagonale droite vers gauche
-            if(grid.tabCoins[j][i] == noPlayer){
+        for (int i = y + yMax, j = x - xMin; i >= y - yMin && j <= x + xMax; i--, j++) {   //Victoire sur la diagonale droite vers gauche
+            if (grid.tabCoins[j][i] == noPlayer) {
                 compteur++;
             }
-            else{
+            else {
                 compteur = 0;
             }
-            if(compteur == 4){
+            if (compteur == 4) {
                 return noPlayer;
             }
         }
         return 0;
+    }
+    public static void winRound(Player player){
+        System.out.print(player.name + "gagne la manche");
+        player.manche++;
+        if (player.manche == 3){
+            System.out.print(player.name + "gagne la partie");
+            System.exit(1);
+        }
     }
 }
 
