@@ -50,7 +50,7 @@ public class Historique {
     }
 
     public static void writePlayedCoin(int column, int player){
-        String msg = "Joueur " + player + "joue" + column;
+        String msg = "Joueur " + player + " joue " + column;
         writeLog(msg);
     }
 }

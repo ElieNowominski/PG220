@@ -13,11 +13,10 @@ public class IA extends Player {
     }
 
     @Override
-    public void play(Grille grid) {
+    public int play(Input input, Grille grid) {
         Random random = new Random();
-        grid.playCoin(1+random.nextInt(grid.getColumnNbr()),grid.tabCoins, this.type);
-        Display.display_grid(grid);
-
+        int column = 1+random.nextInt(grid.getColumnNbr());
+        return column;
     }
 
 
@@ -50,11 +49,5 @@ public class IA extends Player {
         g.initialize();
         g.run();
     }*/
-
-
-
-
-
-
 
 }

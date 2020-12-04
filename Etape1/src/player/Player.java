@@ -1,5 +1,6 @@
 package player;
 
+import game.Input;
 import grille.Grille;
 
 public abstract class Player{
@@ -13,6 +14,6 @@ public abstract class Player{
         this.name = name;
     }
 
-    public abstract void play(Grille grid);
+    public abstract int play(Input input, Grille grid);
 
 }

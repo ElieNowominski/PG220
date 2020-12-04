@@ -10,44 +10,54 @@ import static java.lang.Math.min;
 
 
 public class Game {
+    Grille grid;
+    Input input;
+    Player[] playerTab;
+
+
     public static void main(String[] args) {
-        int turn = 0;
-        Grille grid = new Grille(7, 6);
+        Game game = new Game();
+        game.initialize();
+        Display.display_grid(game.grid);
+        game.run();
+    }
+
+    private void initialize(){
+        this.grid = new Grille(7, 6);  // Init grid
+        this.input = new Input("","",0); // Init input
+        this.playerTab = new Player[2];  // Init player tab
         System.out.println("Joueur 1?");
-        Input input = Input.handleInput();
-        // System.out.println("" + input.getName());  // test si les infos sont bien recupérées
-        // System.out.println("" + input.getType());
-        Historique.writeNameType(input.getName(),input.getType(),1);
-        Player p1 = handleType(input.getType(),input.getName(),1);
+        input.handleInput();
+
+        Historique.writeNameType(input.name,input.type,1);
+        playerTab[0] = handleType(input.type,input.name,1);
 
         System.out.println("Joueur 2?");
-        input = Input.handleInput();
+        input.handleInput();
 
-        Historique.writeNameType(input.getName(),input.getType(),2);
-        Player p2 = handleType(input.getType(),input.getName(),2);
-
-        Display.display_grid(grid);
+        Historique.writeNameType(input.name,input.type,2);
+        playerTab[1] = handleType(input.type,input.name,2);
+    }
+    private void run(){
         int testwin;
         while(true){
-            turn++;
-            p1.play(grid);
-            if(Grille.tabIsFull(grid)){
-                System.out.println("Égalité");
-                System.exit(1);
-            }
-            testwin = win(grid, 1, grid.lastCoin[0],grid.lastCoin[1]);
-            System.out.println(testwin);
-            p2.play(grid);
-            if(Grille.tabIsFull(grid)){
-                System.out.println("Égalité");
-                System.exit(1);
-            }
-            testwin = win(grid, 2, grid.lastCoin[0],grid.lastCoin[1]);
-            System.out.println(testwin);
-        }
+            for(int i = 0;i<2;i++){
+                input.column = playerTab[i].play(input,grid);
+                grid.playCoin(input.column,grid.tabCoins, i);
+                Historique.writePlayedCoin(input.column,i+1);
+                Display.display_grid(grid);
 
+                /*if(Grille.tabIsFull(grid)){
+                    System.out.println("Égalité");
+                    System.exit(1);
+                }
+                testwin = win(grid, i, grid.lastCoin[0],grid.lastCoin[1]);
+                System.out.println(testwin);*/
+            }
+        }
     }
-    public static Player handleType(String type, String name, int noPlayer){
+
+    private Player handleType(String type, String name, int noPlayer){
         if(type.equals("humain")){
             return new Human(noPlayer,0,name);
         }
@@ -55,6 +65,7 @@ public class Game {
             return new IA(noPlayer,0,name);
         }
     }
+
     public static int win(Grille grid, int noPlayer, int x, int y) {
         int compteur;
         compteur = 0;

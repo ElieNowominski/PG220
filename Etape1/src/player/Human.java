@@ -12,11 +12,10 @@ public class Human extends Player {
     }
 
     @Override
-    public void play(Grille grid) {
+    public int play(Input input, Grille grid) {
         System.out.println("Saisissez une colonne :");
         System.out.print("$");
-        Input input = Input.handleCoinInput(grid.getColumnNbr());
-        grid.playCoin(input.getColumn(),grid.tabCoins, this.type);
-        Display.display_grid(grid);
+        int column = input.handleCoinInput();
+        return column;
     }
 }

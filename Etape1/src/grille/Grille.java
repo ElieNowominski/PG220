@@ -25,9 +25,9 @@ public class Grille {
         return Tab;
     }
 
-    public void playCoin(int column, int[][] tab, int turn){
+    public void playCoin(int column, int[][] tab, int player){
         int line = getLastPos(tab,column);
-        if (turn % 2 == 0) {
+        if (player == 1) {
             tab[line - 1][column - 1] = 2;
         }
         else {
