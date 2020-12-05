@@ -53,4 +53,9 @@ public class Historique {
         String msg = "Joueur " + player + " joue " + column;
         writeLog(msg);
     }
+
+    public static void writeWinGame(){
+        String msg = "Partie finie";
+        writeLog(msg);
+    }
 }

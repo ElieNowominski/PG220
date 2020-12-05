@@ -39,7 +39,7 @@ public class Input {
         }
         else if (input.substring(0,2).equals("ia")) {
             this.type = "ia";
-            this.name = input.substring(7);
+            this.name = input.substring(3);
             // Petit problème à gérer quand le nom de l'ia < 2 lettres
         }
         /*else {
