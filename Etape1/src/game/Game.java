@@ -70,6 +70,14 @@ public class Game {
         }
     }
 
+    public int modifyCounter(int x, int y, int noPlayer, int compteur){
+        if(this.grid.tabCoins[x][y] == noPlayer){
+            return ++compteur;
+        }
+        else{
+            return 0;
+        }
+    }
     public int win(int noPlayer) {
         int compteur;
         compteur = 0;
@@ -80,12 +88,7 @@ public class Game {
         int yMin = min(y, 3);
         int yMax = min(this.grid.getColumnNbr() - 1 - y, 3);
         for (int i = x - xMin; i <= x + xMax; i++) {   //Victoire sur la colonne
-            if (this.grid.tabCoins[i][y] == noPlayer) {
-                compteur++;
-            }
-            else {
-                compteur = 0;
-            }
+            compteur = this.modifyCounter(i,y,noPlayer,compteur);
             if (compteur == 4) {
                 System.out.println("victoire sur colonne");
                 return noPlayer;
@@ -93,12 +96,7 @@ public class Game {
         }
         compteur = 0;
         for (int i = y - yMin; i <= y + yMax; i++) {  //Victoire sur la ligne
-            if (this.grid.tabCoins[x][i] == noPlayer) {
-                compteur++;
-            }
-            else {
-                compteur = 0;
-            }
+            compteur = this.modifyCounter(x,i,noPlayer,compteur);
             if (compteur == 4) {
                 System.out.println("victoire sur ligne");
                 return noPlayer;
@@ -106,12 +104,7 @@ public class Game {
         }
         compteur = 0;
         for (int i = y - yMin, j = x - xMin; i <= y + yMax && j <= x + xMax; i++, j++) {   //Victoire sur la diagonale gauche vers droite
-            if (this.grid.tabCoins[j][i] == noPlayer) {
-                compteur++;
-            }
-            else {
-                compteur = 0;
-            }
+            compteur = this.modifyCounter(j,i,noPlayer,compteur);
             if (compteur == 4) {
                 System.out.println("victoire sur diagonale de gauche vers droite");
                 return noPlayer;
@@ -119,12 +112,7 @@ public class Game {
         }
         compteur = 0;
         for (int i = y + yMax, j = x - xMin; i >= y - yMin && j <= x + xMax; i--, j++) {   //Victoire sur la diagonale droite vers gauche
-            if (this.grid.tabCoins[j][i] == noPlayer) {
-                compteur++;
-            }
-            else {
-                compteur = 0;
-            }
+            compteur = this.modifyCounter(j,i,noPlayer,compteur);
             if (compteur == 4) {
                 System.out.println("victoire sur diagonale de droite vers gauche");
                 return noPlayer;
