@@ -7,19 +7,19 @@ public class Input {
     String type;
     int column;
 
-    public Input(String name, String type, int column){
+    Input(String name, String type, int column){
         this.name = name;
         this.type = type;
         this.column = column;
     }
 
-    public int handleCoinInput(int columnNbr){
+    public int handleCoinInput(int columnNbr) {
         boolean coinIsFalse;
-        do{
-            try{
+        do {
+            try {
                 Scanner sc = new Scanner(System.in);
                 String input = sc.nextLine();
-                if (input.equals("sortir")){
+                if (input.equals("sortir")) {
                     System.out.print("Vous quittez le jeu");
                     System.exit(1);
                 }
@@ -32,14 +32,13 @@ public class Input {
                     coinIsFalse = false;
                     return column;
                 }
-            } catch(java.lang.NumberFormatException e){
+            } catch (java.lang.NumberFormatException e) {
                 coinIsFalse = true;
                 System.out.println("Erreur saisi colonne xyz");
             }
-        }while(coinIsFalse);
+        } while (coinIsFalse);
         return column;
     }
-
      void handleInput(int noPlayer) {
          boolean playerIsFalse;
          // Gestion du type
@@ -68,7 +67,6 @@ public class Input {
              }
          } while (playerIsFalse);
      }
-    public int getColumn() { return this.column; }
 }
 
 

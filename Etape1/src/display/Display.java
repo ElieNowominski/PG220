@@ -1,11 +1,9 @@
 package display;
 
-import grille.Grille;
-import game.Game;
-import player.Player;
+import grid.Grid;
 
 public class Display {
-    public static void display_grid(Grille grid) {
+    public static void display_grid(Grid grid) {
         for(int i=1; i<=grid.getColumnNbr(); i++){
             System.out.print(i);
             System.out.print(" ");

@@ -1,14 +1,12 @@
 package player;
 
-
-import display.Display;
 import game.Input;
-import grille.Grille;
+import grid.Grid;
 
 public class Human extends Player {
 
-    public Human(int type, int manche, String name) {
-        super(type,manche,name);
+    public Human(int type, int round, String name) {
+        super(type,round,name);
     }
 
     @Override
