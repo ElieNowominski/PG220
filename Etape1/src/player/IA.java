@@ -1,53 +1,19 @@
 package player;
 
-import display.Display;
-import player.Player;
-import grille.Grille;
+import grid.Grid;
 import game.Input;
 import java.util.Random;
 
 public class IA extends Player {
 
-    public IA(int type, int manche, String name){
-        super(type,manche,name);
+    public IA(int type, int round, String name){
+        super(type,round,name);
     }
 
     @Override
-    public int play(Input input, Grille grid) {
+    public int play(Input input, Grid grid) {
         Random random = new Random();
         int column = 1+random.nextInt(grid.getColumnNbr());
         return column;
     }
-
-
-    /*class Game
-    {
-        Grille g;
-        void initialize();
-        void run()
-        {
-            while(!hasWon)
-            {
-                for(int i = 0;i<2;i++)
-                {
-                    int numCol = player[i].jouer();
-                    g.ajouterToken(i,numCol);
-                    if(g.Victory())
-                    {
-                        hasWon = true;
-                    }
-                }
-            }
-        }
-
-    }
-
-    main(String[] arg)
-    {
-
-        Game g = new Game();
-        g.initialize();
-        g.run();
-    }*/
-
 }

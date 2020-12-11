@@ -7,7 +7,7 @@ public class Input {
     String type;
     int column;
 
-    public Input(String name, String type, int column){
+    Input(String name, String type, int column){
         this.name = name;
         this.type = type;
         this.column = column;
@@ -47,7 +47,6 @@ public class Input {
             // Gérer les exceptions + column
         }*/
     }
-    public int getColumn() { return this.column; }
 }
 
 

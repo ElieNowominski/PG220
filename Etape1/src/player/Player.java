@@ -1,19 +1,19 @@
 package player;
 
 import game.Input;
-import grille.Grille;
+import grid.Grid;
 
 public abstract class Player{
     public int type;
-    public int manche;
+    public int round;
     public String name;
 
-    public Player(int type, int manche, String name) {
+    public Player(int type, int round, String name) {
         this.type = type;
-        this.manche = manche;
+        this.round = round;
         this.name = name;
     }
 
-    public abstract int play(Input input, Grille grid);
+    public abstract int play(Input input, Grid grid);
 
 }

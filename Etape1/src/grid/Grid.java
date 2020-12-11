@@ -1,14 +1,12 @@
-package grille;
+package grid;
 
-import game.Historique;
-
-public class Grille {
+public class Grid {
     int columnNbr;
     int lineNbr;
     public int[][] tabCoins;
     public int[] lastCoin;
 
-    public Grille(int columnNbr, int lineNbr){
+    public Grid(int columnNbr, int lineNbr){
         this.columnNbr = columnNbr;
         this.lineNbr = lineNbr;
         this.tabCoins = initTab(columnNbr, lineNbr);
