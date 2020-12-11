@@ -13,40 +13,61 @@ public class Input {
         this.column = column;
     }
 
-    public int handleCoinInput(){
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        if (input.equals("sortir")){
-            System.out.print("Vous quittez le jeu");
-            System.exit(1);
-        }
-        int column = Integer.parseInt(input);
-        if (!(0 <= column && column < 8)) {
-            System.out.println("La colonne doit être entre 1 et 7");
-            return 0;
-        } else {
-            return column;
-        }
+    public int handleCoinInput(int columnNbr){
+        boolean coinIsFalse;
+        do{
+            try{
+                Scanner sc = new Scanner(System.in);
+                String input = sc.nextLine();
+                if (input.equals("sortir")){
+                    System.out.print("Vous quittez le jeu");
+                    System.exit(1);
+                }
+                int column = Integer.parseInt(input);
+                System.out.println(column);
+                if (!(0 <= column && column < columnNbr)) {
+                    System.out.println("Erreur colonne non valide");
+                    coinIsFalse = true;
+                } else {
+                    coinIsFalse = false;
+                    return column;
+                }
+            } catch(java.lang.NumberFormatException e){
+                coinIsFalse = true;
+                System.out.println("Erreur saisi colonne xyz");
+            }
+        }while(coinIsFalse);
+        return column;
     }
 
-     void handleInput(){
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        // Gestion du type
-        if(input.substring(0,6).equals("humain")) {
-            this.type = "humain";
-            this.name = input.substring(7);
-        }
-        else if (input.substring(0,2).equals("ia")) {
-            this.type = "ia";
-            this.name = input.substring(3);
-            // Petit problème à gérer quand le nom de l'ia < 2 lettres
-        }
-        /*else {
-
-            // Gérer les exceptions + column
-        }*/
-    }
+     void handleInput(int noPlayer) {
+         boolean playerIsFalse;
+         // Gestion du type
+         do {
+             Scanner sc = new Scanner(System.in);
+             String input = sc.nextLine();
+             try {
+             if (input.substring(0, 2).equals("ia")) {
+                 this.type = "ia";
+                 this.name = input.substring(3);
+                 playerIsFalse = false;
+             } else if (input.substring(0, 6).equals("humain")) {
+                 this.type = "humain";
+                 this.name = input.substring(7);
+                 playerIsFalse = false;
+             } else {
+                 System.out.println("Erreur saisie Joueur " + noPlayer);
+                 playerIsFalse = true;
+                 System.out.println("Joueur " + noPlayer + "?");
+             }
+         }
+             catch(java.lang.StringIndexOutOfBoundsException e){
+                 System.out.println("Erreur saisie Joueur " + noPlayer);
+                 playerIsFalse = true;
+                 System.out.println("Joueur "+noPlayer+"?");
+             }
+         } while (playerIsFalse);
+     }
     public int getColumn() { return this.column; }
 }
 

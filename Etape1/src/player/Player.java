@@ -14,6 +14,6 @@ public abstract class Player{
         this.name = name;
     }
 
-    public abstract int play(Input input, Grille grid);
+    public abstract int play(Input input, int columnNbr);
 
 }

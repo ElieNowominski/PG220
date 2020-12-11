@@ -13,9 +13,9 @@ public class IA extends Player {
     }
 
     @Override
-    public int play(Input input, Grille grid) {
+    public int play(Input input,int columnNbr) {
         Random random = new Random();
-        int column = 1+random.nextInt(grid.getColumnNbr());
+        int column = 1+random.nextInt(columnNbr);
         return column;
     }
 
