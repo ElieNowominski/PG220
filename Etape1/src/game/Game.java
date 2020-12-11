@@ -29,14 +29,14 @@ public class Game {
         this.playerTab = new Player[2];  // Init player tab
         this.hist = new Log();  // Init log
         System.out.println("Joueur 1?");
-        input.handleInput(1);
+        input.handleInput(1,hist);
 
         hist.writeNameType(input.name,input.type,1);
         hist.writeLog(hist.log);
         playerTab[0] = handleType(input.type,input.name,1);
 
         System.out.println("Joueur 2?");
-        input.handleInput(2);
+        input.handleInput(2,hist);
 
         hist.writeNameType(input.name,input.type,2);
         hist.writeLog(hist.log);
@@ -46,7 +46,7 @@ public class Game {
     private void run(){
         while(true){
             for(int i = 0;i<2;i++){
-                input.column = playerTab[i].play(input, grid.getColumnNbr());
+                input.column = playerTab[i].play(input, grid.getColumnNbr(),hist);
                 grid.playCoin(input.column,grid.tabCoins, i);
                 hist.writePlayedCoin(input.column,i+1);
                 hist.writeLog(hist.log);

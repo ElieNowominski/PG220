@@ -1,6 +1,6 @@
 package player;
 
-import grid.Grid;
+import game.Log;
 import game.Input;
 import java.util.Random;
 
@@ -11,7 +11,7 @@ public class IA extends Player {
     }
 
     @Override
-    public int play(Input input,int columnNbr) {
+    public int play(Input input,int columnNbr, Log hist) {
         Random random = new Random();
         int column = 1+random.nextInt(columnNbr);
         return column;

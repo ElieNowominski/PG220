@@ -1,7 +1,7 @@
 package player;
 
 import game.Input;
-import grid.Grid;
+import game.Log;
 
 public abstract class Player{
     public int type;
@@ -13,5 +13,5 @@ public abstract class Player{
         this.round = round;
         this.name = name;
     }
-    public abstract int play(Input input, int columnNbr);
+    public abstract int play(Input input, int columnNbr, Log hist);
 }
