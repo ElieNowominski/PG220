@@ -1,7 +1,7 @@
 package player;
 
 import game.Input;
-import grid.Grid;
+import game.Log;
 
 public class Human extends Player {
 
@@ -10,10 +10,10 @@ public class Human extends Player {
     }
 
     @Override
-    public int play(Input input, int columnNbr) {
+    public int play(Input input, int columnNbr, Log hist) {
         System.out.println("Saisissez une colonne :");
         System.out.print("$");
-        int column = input.handleCoinInput(columnNbr);
+        int column = input.handleCoinInput(columnNbr,hist);
         return column;
     }
 }

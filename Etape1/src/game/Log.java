@@ -56,4 +56,17 @@ public class Log {
         File file =  new File("Etape1/log.txt") ;
         file.delete();
     }
+
+    void writeInputError(int player){
+        this.log = "Erreur saisie Joueur " + player;
+    }
+    void writeColumnErrorXyz(String error){
+        this.log = "Erreur saisie colonne " + error;
+    }
+    void writeColumnErrorOut(int column){
+        this.log = "Erreur colonne non valide " + column;
+    }
+    void writeColumnErrorFull(int column){
+        this.log = "Erreur colonne pleine " + column;
+    }
 }
