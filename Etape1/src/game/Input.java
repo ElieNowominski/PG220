@@ -2,6 +2,7 @@ package game;
 
 import java.util.Scanner;
 
+
 public class Input {
     String name;
     String type;
@@ -24,7 +25,6 @@ public class Input {
                     System.exit(1);
                 }
                 int column = Integer.parseInt(input);
-                System.out.println(column);
                 if (!(0 <= column && column < columnNbr)) {
                     System.out.println("Erreur colonne non valide");
                     coinIsFalse = true;

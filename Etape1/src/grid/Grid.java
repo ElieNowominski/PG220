@@ -62,4 +62,12 @@ public class Grid {
         }
         return true;
     }
+    public boolean columnIsFull(int nbColumn){
+        if(this.tabCoins[0][nbColumn-1] != 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

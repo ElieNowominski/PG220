@@ -46,7 +46,17 @@ public class Game {
     private void run(){
         while(true){
             for(int i = 0;i<2;i++){
-                input.column = playerTab[i].play(input, grid.getColumnNbr());
+                boolean coinIsFalse;
+                do {
+                    input.column = playerTab[i].play(input, grid.getColumnNbr());
+                    if (grid.columnIsFull(input.column)) {
+                        System.out.println("Erreur colonne pleine"+input.column);
+                        coinIsFalse = true;
+                    }
+                    else{
+                        coinIsFalse = false;
+                    }
+                }while(coinIsFalse);
                 grid.playCoin(input.column,grid.tabCoins, i);
                 hist.writePlayedCoin(input.column,i+1);
                 hist.writeLog(hist.log);
