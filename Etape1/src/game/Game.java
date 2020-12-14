@@ -1,11 +1,10 @@
 package game;
 
 import display.Display;
+import grid.Grid;
 import player.Human;
 import player.IA;
 import player.Player;
-import grid.Grid;
-
 
 import static java.lang.Math.min;
 
@@ -48,9 +47,10 @@ public class Game {
             for(int i = 0;i<2;i++){
                 boolean coinIsFalse;
                 do {
-                    input.column = playerTab[i].play(input, grid.getColumnNbr());
+                    input.column = playerTab[i].play(input, grid.getColumnNbr(),hist);
                     if (grid.columnIsFull(input.column)) {
-                        System.out.println("Erreur colonne pleine"+input.column);
+                        System.out.println("Erreur colonne pleine "+input.column);
+                        hist.writeColumnErrorFull(input.column);
                         coinIsFalse = true;
                     }
                     else{

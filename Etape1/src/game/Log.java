@@ -10,7 +10,7 @@ public class Log {
     String log;
 
     void writeLog(String informations){
-        File file =  new File("Etape1/log.txt") ;
+        File file =  new File("log.txt") ;
         Writer writer = null ;
 
         try {
