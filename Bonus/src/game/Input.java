@@ -49,7 +49,13 @@ public class Input {
              Scanner sc = new Scanner(System.in);
              String input = sc.nextLine();
              try {
-                 if (input.substring(0, 6).equals("humain")) {
+                 if(input.substring(0,4).equals("ia:2")){
+                     this.type = "ia:2";
+                     this.name = input.substring(5);
+                     playerIsFalse = false;
+                     System.out.println("Je suis IA2");
+                 }
+                 else if (input.substring(0, 6).equals("humain")) {
                      this.type = "humain";
                      this.name = input.substring(7);
                      playerIsFalse = false;

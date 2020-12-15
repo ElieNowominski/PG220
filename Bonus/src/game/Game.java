@@ -3,7 +3,7 @@ package game;
 import display.Display;
 import grid.Grid;
 import player.Human;
-import player.IA;
+import player.IA2;
 import player.IARandom;
 import player.Player;
 
@@ -87,8 +87,12 @@ public class Game {
         if(type.equals("humain")){
             return new Human(noPlayer,0,name);
         }
-        else{
+        else if(type.equals("ia:random")){
             return new IARandom(noPlayer,0,name);
+        }
+        else{
+            System.out.println("IA2 créé");
+            return new IA2(noPlayer,0,name);
         }
     }
 
@@ -113,7 +117,6 @@ public class Game {
         for (int i = x - xMin; i <= x + xMax; i++) {   //Victoire sur la colonne
             compteur = this.modifyCounter(i,y,noPlayer,compteur);
             if (compteur == 4) {
-                System.out.println("victoire sur colonne");
                 return noPlayer;
             }
         }
@@ -121,7 +124,6 @@ public class Game {
         for (int i = y - yMin; i <= y + yMax; i++) {  //Victoire sur la ligne
             compteur = this.modifyCounter(x,i,noPlayer,compteur);
             if (compteur == 4) {
-                System.out.println("victoire sur ligne");
                 return noPlayer;
             }
         }
@@ -133,7 +135,6 @@ public class Game {
         for (int i = y - yMin2, j = x - xMin2; i <= y + yMax2 && j <= x + xMax2; i++, j++) {   //Victoire sur la diagonale gauche vers droite
             compteur = this.modifyCounter(j,i,noPlayer,compteur);
             if (compteur == 4) {
-                System.out.println("victoire sur diagonale de gauche vers droite");
                 return noPlayer;
             }
         }
@@ -145,7 +146,6 @@ public class Game {
         for (int i = y + yMax, j = x - xMin; i >= y - yMin && j <= x + xMax; i--, j++) {   //Victoire sur la diagonale droite vers gauche
             compteur = this.modifyCounter(j,i,noPlayer,compteur);
             if (compteur == 4) {
-                System.out.println("victoire sur diagonale de droite vers gauche");
                 return noPlayer;
             }
         }
