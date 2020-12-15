@@ -58,10 +58,7 @@ public class Log {
 
     void writeWinGame(){
         this.log = "Partie finie";
-        File file =  new File("log.txt") ;
-        file.delete();
     }
-
     void writeInputError(int player){
         this.log = "Erreur saisie Joueur " + player;
     }

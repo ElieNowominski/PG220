@@ -25,12 +25,12 @@ public class Game {
     }
 
     private void initialize(){
-        File file =  new File("Etape1/log.txt") ;
-        file.delete();
+        this.hist = new Log();  // Init log
+        hist.delLog();
         this.grid = new Grid(7, 6);  // Init grid
         this.input = new Input("","",0); // Init input
         this.playerTab = new Player[2];  // Init player tab
-        this.hist = new Log();  // Init log
+
         System.out.println("Joueur 1?");
         input.handleInput(1,hist);
 
