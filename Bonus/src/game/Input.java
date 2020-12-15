@@ -49,21 +49,24 @@ public class Input {
              Scanner sc = new Scanner(System.in);
              String input = sc.nextLine();
              try {
-             if (input.substring(0, 2).equals("ia")) {
-                 this.type = "ia";
-                 this.name = input.substring(3);
-                 playerIsFalse = false;
-             } else if (input.substring(0, 6).equals("humain")) {
-                 this.type = "humain";
-                 this.name = input.substring(7);
-                 playerIsFalse = false;
-             } else {
-                 System.out.println("Erreur saisie Joueur " + noPlayer);
-                 playerIsFalse = true;
-                 hist.writeInputError(noPlayer);
-                 hist.writeLog(hist.log);
-                 System.out.println("Joueur " + noPlayer + "?");
-             }
+                 if (input.substring(0, 6).equals("humain")) {
+                     this.type = "humain";
+                     this.name = input.substring(7);
+                     playerIsFalse = false;
+                 }
+
+                 else if (input.substring(0, 9).equals("ia:random")) {
+                     this.type = "ia:random";
+                     this.name = input.substring(3);
+                     playerIsFalse = false;
+                 }
+                 else {
+                     System.out.println("Erreur saisie Joueur " + noPlayer);
+                     playerIsFalse = true;
+                     hist.writeInputError(noPlayer);
+                     hist.writeLog(hist.log);
+                     System.out.println("Joueur " + noPlayer + "?");
+                 }
          }
              catch(java.lang.StringIndexOutOfBoundsException e){
                  System.out.println("Erreur saisie Joueur " + noPlayer);
