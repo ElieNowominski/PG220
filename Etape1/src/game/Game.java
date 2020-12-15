@@ -6,6 +6,8 @@ import player.Human;
 import player.IA;
 import player.Player;
 
+import java.io.File;
+
 import static java.lang.Math.min;
 
 
@@ -23,6 +25,8 @@ public class Game {
     }
 
     private void initialize(){
+        File file =  new File("Etape1/log.txt") ;
+        file.delete();
         this.grid = new Grid(7, 6);  // Init grid
         this.input = new Input("","",0); // Init input
         this.playerTab = new Player[2];  // Init player tab
