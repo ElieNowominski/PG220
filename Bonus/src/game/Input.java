@@ -6,11 +6,73 @@ public class Input {
     String name;
     String type;
     int column;
+    int line;
+    int players;
+    int round;
+    int columnPlayed;
 
-    Input(String name, String type, int column){
+    Input(String name, String type, int column, int line, int players, int round, int columnPlayed){
         this.name = name;
         this.type = type;
         this.column = column;
+        this.line = line;
+        this.players = players;
+        this.round = round;
+        this.columnPlayed = columnPlayed;
+    }
+
+    void handleRoundToWin(Log hist) {
+        System.out.print("Indiquez le nombre de manche nécessaire pour gagner :  ");
+        while (true){
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextInt()) {
+                this.round = sc.nextInt();
+                hist.writeRoundNeeded(round);
+                hist.writeLog(hist.log);
+                break;
+            }
+            else {
+                System.out.println("Vous devez entrez un nombre de manche cohérent :  ");
+            }
+        }
+    }
+
+    void handleGridSize(Log hist){
+        System.out.println("Indiquez : Lignes Colonnes pour choisir la taille de la grille (2 4 minimum)");
+        while(true) {
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextInt()) {
+                this.line = sc.nextInt();
+                System.out.println("Ligne : " + this.line);
+                if (sc.hasNextInt()) {
+                    this.column = sc.nextInt();
+                    System.out.println("Colonne : " + column);
+                    if(testGridSize(column, line)){
+                        hist.writeGridSize(column, line);
+                        hist.writeLog(hist.log);
+                        break;
+                    }
+                    else {
+                        System.out.println("La grille ne respecte pas les critères de tailles");
+                    }
+                }
+                else {
+                    System.out.println("Problème de saisie de la colonne");
+                }
+            }
+            else {
+                System.out.println("Problème d'entrée de la ligne");
+            }
+        }
+    }
+
+    private boolean testGridSize(int column, int line){
+        if(column >= 4){
+            if((column * line >= 8 && ((column * line) % 2 == 0))){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int handleCoinInput(int columnNbr, Log hist) {
@@ -24,7 +86,7 @@ public class Input {
                     System.exit(1);
                 }
                 int column = Integer.parseInt(input);
-                if (!(0 <= column && column < columnNbr)) {
+                if (!(0 <= column && column <= columnNbr)) {
                     System.out.println("Erreur colonne non valide " + column);
                     hist.writeColumnErrorOut(column);
                     hist.writeLog(hist.log);
@@ -42,8 +104,8 @@ public class Input {
         } while (coinIsFalse);
         return column;
     }
-     void handleInput(int noPlayer, Log hist) {
-         boolean playerIsFalse;
+    void handleInput(int noPlayer, Log hist) {
+        boolean playerIsFalse;
          // Gestion du type
          do {
              Scanner sc = new Scanner(System.in);

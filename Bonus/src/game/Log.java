@@ -9,6 +9,11 @@ import java.io.Writer;
 public class Log {
     String log;
 
+    static void delLog(){
+        File file =  new File("log.txt") ;
+        file.delete();
+    }
+
     void writeLog(String informations){
         File file =  new File("log.txt") ;
         Writer writer = null ;
@@ -46,17 +51,18 @@ public class Log {
             this.log = "Egalité";
         }
     }
-
+    void writeGridSize(int column, int line){
+        this.log = "La partie se joue sur une grille de taille " + line + " x " + column + " .";
+    }
+    void writeRoundNeeded(int round){
+        this.log = "Le premier à " + round + " manches remporte la partie";
+    }
     void writePlayedCoin(int column, int player){
         this.log = "Joueur " + player + " joue " + column;
     }
-
     void writeWinGame(){
         this.log = "Partie finie";
-        File file =  new File("Etape1/log.txt") ;
-        file.delete();
     }
-
     void writeInputError(int player){
         this.log = "Erreur saisie Joueur " + player;
     }
