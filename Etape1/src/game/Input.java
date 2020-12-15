@@ -24,7 +24,7 @@ public class Input {
                     System.exit(1);
                 }
                 int column = Integer.parseInt(input);
-                if (!(0 <= column && column < columnNbr)) {
+                if (!(0 <= column && column <= columnNbr)) {
                     System.out.println("Erreur colonne non valide " + column);
                     hist.writeColumnErrorOut(column);
                     hist.writeLog(hist.log);
