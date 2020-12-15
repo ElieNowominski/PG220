@@ -9,6 +9,11 @@ import java.io.Writer;
 public class Log {
     String log;
 
+    static void delLog(){
+        File file =  new File("Etape1/log.txt") ;
+        file.delete();
+    }
+
     void writeLog(String informations){
         File file =  new File("Etape1/log.txt") ;
         Writer writer = null ;
@@ -53,8 +58,6 @@ public class Log {
 
     void writeWinGame(){
         this.log = "Partie finie";
-        File file =  new File("Etape1/log.txt") ;
-        file.delete();
     }
 
     void writeInputError(int player){

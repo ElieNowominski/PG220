@@ -7,6 +7,8 @@ import player.Player;
 import grid.Grid;
 
 
+import java.io.File;
+
 import static java.lang.Math.min;
 
 
@@ -24,6 +26,8 @@ public class Game {
     }
 
     private void initialize(){
+        File file =  new File("Etape1/log.txt") ;
+        file.delete();
         this.grid = new Grid(7, 6);  // Init grid
         this.input = new Input("","",0); // Init input
         this.playerTab = new Player[2];  // Init player tab
@@ -48,7 +52,7 @@ public class Game {
             for(int i = 0;i<2;i++){
                 boolean coinIsFalse;
                 do {
-                    input.column = playerTab[i].play(input, grid.getColumnNbr());
+                    input.column = playerTab[i].play(input, grid.getColumnNbr(),hist);
                     if (grid.columnIsFull(input.column)) {
                         System.out.println("Erreur colonne pleine"+input.column);
                         coinIsFalse = true;
