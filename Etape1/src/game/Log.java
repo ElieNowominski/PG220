@@ -53,7 +53,7 @@ public class Log {
 
     void writeWinGame(){
         this.log = "Partie finie";
-        File file =  new File("Etape1/log.txt") ;
+        File file =  new File("log.txt") ;
         file.delete();
     }
 
