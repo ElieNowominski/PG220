@@ -81,7 +81,7 @@ public class Game {
                     hist.writeRoundVictory(playerTab[i].type,0,playerTab[i].round);
                     hist.writeLog(hist.log);
                     this.winRound(i);
-                    hist.writeCount(playerTab[0].round,playerTab[1].round);
+                    hist.writeCount(playerTab);
                     hist.writeLog(hist.log);
                     hist.writeStartRound();
                     hist.writeLog(hist.log);
