@@ -111,6 +111,10 @@ public class Input {
              Scanner sc = new Scanner(System.in);
              String input = sc.nextLine();
              try {
+                 if (input.equals("sortir")) {
+                     System.out.print("Vous quittez le jeu");
+                     System.exit(1);
+                 }
                  if(input.substring(0,4).equals("ia:2")){
                      this.type = "ia:2";
                      this.name = input.substring(5);

@@ -94,7 +94,6 @@ public class Game {
             return new IARandom(noPlayer,0,name);
         }
         else{
-            System.out.println("IA2 créé");
             return new IA2(noPlayer,0,name);
         }
     }

@@ -14,7 +14,6 @@ public class IA2 extends IA{
 
     public int play(Input input, int columnNbr, Log hist) {
         Random random = new Random();
-        System.out.println("Mon lastCoin est "+this.lastCoin);
         if(this.lastCoin == 0) {
             int column = 1 + random.nextInt(columnNbr);
             this.lastCoin = column;
