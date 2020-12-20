@@ -1,5 +1,7 @@
 package game;
 
+import player.Player;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,6 +65,8 @@ public class Log {
     void writeWinGame(){
         this.log = "Partie finie";
     }
+    void writeStartRound(){this.log ="Manche commence";}
+    void writeCount(Player[] playerTab){this.log = "Score " +playerTab[0].round+ " - " + playerTab[1].round;}
     void writeInputError(int player){
         this.log = "Erreur saisie Joueur " + player;
     }
