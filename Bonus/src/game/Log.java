@@ -63,6 +63,8 @@ public class Log {
     void writeWinGame(){
         this.log = "Partie finie";
     }
+    void writeStartRound(){this.log ="Manche commence";}
+    void writeCount(int p1Round,int p2Round){this.log = "Score " +p1Round+ " - " + p2Round;}
     void writeInputError(int player){
         this.log = "Erreur saisie Joueur " + player;
     }

@@ -55,7 +55,8 @@ public class Log {
     void writePlayedCoin(int column, int player){
         this.log = "Joueur " + player + " joue " + column;
     }
-
+    void writeStartRound(){this.log ="Manche commence";}
+    void writeCount(int p1Round,int p2Round){this.log = "Score " +p1Round+ " - " + p2Round;}
     void writeWinGame(){
         this.log = "Partie finie";
     }
