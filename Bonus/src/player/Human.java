@@ -11,8 +11,6 @@ public class Human extends Player {
 
     @Override
     public int play(Input input, int columnNbr, Log hist) {
-        System.out.println("Saisissez une colonne :");
-        System.out.print("$");
         int column = input.handleCoinInput(columnNbr,hist);
         return column;
     }

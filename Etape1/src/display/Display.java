@@ -14,9 +14,9 @@ public class Display {
                 if (grid.tabCoins[i][j] == 0) {
                     System.out.print(". ");
                 } else if (grid.tabCoins[i][j] == 1) {
-                    System.out.print("X ");
+                    System.out.print("x ");
                 } else if (grid.tabCoins[i][j] == 2) {
-                    System.out.print("O ");
+                    System.out.print("o ");
                 }
             }
             System.out.println("");

@@ -20,7 +20,6 @@ public class Input {
             String input = sc.nextLine();
             try {
                 if (input.equals("sortir")) {
-                    System.out.print("Vous quittez le jeu");
                     System.exit(1);
                 }
                 int column = Integer.parseInt(input);
@@ -37,7 +36,7 @@ public class Input {
                 coinIsFalse = true;
                 hist.writeColumnErrorXyz(input);
                 hist.writeLog(hist.log);
-                System.out.println("Erreur saisi colonne " + input);
+                System.out.println("Erreur saisie colonne " + input);
             }
         } while (coinIsFalse);
         return column;
@@ -50,7 +49,6 @@ public class Input {
              String input = sc.nextLine();
              try {
                  if (input.equals("sortir")) {
-                     System.out.print("Vous quittez le jeu");
                      System.exit(1);
                  }
                  if (input.substring(0, 2).equals("ia")) {

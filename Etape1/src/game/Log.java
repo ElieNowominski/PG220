@@ -50,7 +50,7 @@ public class Log {
             this.log = "Joueur " + player + " gagne";
         }
         else{
-            this.log = "Egalité";
+            this.log = "Egalite";
         }
     }
 

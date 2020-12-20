@@ -82,7 +82,6 @@ public class Input {
             String input = sc.nextLine();
             try {
                 if (input.equals("sortir")) {
-                    System.out.print("Vous quittez le jeu");
                     System.exit(1);
                 }
                 int column = Integer.parseInt(input);
@@ -112,7 +111,6 @@ public class Input {
              String input = sc.nextLine();
              try {
                  if (input.equals("sortir")) {
-                     System.out.print("Vous quittez le jeu");
                      System.exit(1);
                  }
                  if(input.substring(0,4).equals("ia:2")){

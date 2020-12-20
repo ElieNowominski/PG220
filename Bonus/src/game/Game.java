@@ -49,11 +49,14 @@ public class Game {
     private void run(){
         hist.writeStartRound();
         hist.writeLog(hist.log);
+        int gameNumber = 0;
         while(true){
             for(int i = 0;i<2;i++){
                 boolean coinIsFalse;
                 do {
                     input.columnPlayed = playerTab[i].play(input, grid.getColumnNbr(),hist);
+                    hist.writePlayedCoin(input.columnPlayed,i+1);
+                    hist.writeLog(hist.log);
                     if (grid.columnIsFull(input.columnPlayed)) {
                         System.out.println("Erreur colonne pleine "+input.columnPlayed);
                         hist.writeColumnErrorFull(input.columnPlayed);
@@ -64,17 +67,26 @@ public class Game {
                     }
                 }while(coinIsFalse);
                 grid.playCoin(input.columnPlayed,grid.tabCoins, i);
-                hist.writePlayedCoin(input.columnPlayed,i+1);
-                hist.writeLog(hist.log);
                 Display.display_grid(grid);
 
                 if(grid.tabIsFull()){
-                    System.out.println("Égalité");
+                    System.out.println("Égalite");
                     this.grid = new Grid(input.column, input.line);
                     hist.writeRoundVictory(playerTab[i].type,1, playerTab[i].round);
                     hist.writeLog(hist.log);
+                    hist.writeCount(playerTab);
+                    hist.writeLog(hist.log);
+                    hist.writeStartRound();
+                    hist.writeLog(hist.log);
                     Display.display_grid(grid);
-                    break;
+                    if(i==(gameNumber%2)){
+                        if(i==1){
+                            i=0;
+                        }
+                        else{
+                            i=1;
+                        }
+                    }
                 }
                 if(this.win(playerTab[i].type)==playerTab[i].type){
                     this.grid = new Grid(input.column,input.line);
@@ -86,7 +98,14 @@ public class Game {
                     hist.writeStartRound();
                     hist.writeLog(hist.log);
                     Display.display_grid(grid);
-                    break;
+                    if(i==(gameNumber%2)){
+                        if(i==1){
+                            i=0;
+                        }
+                        else{
+                            i=1;
+                        }
+                    }
                 }
             }
         }
@@ -160,10 +179,11 @@ public class Game {
         return 0;
     }
     private void winRound(int i, int roundWin){
-        System.out.println(this.playerTab[i].name + " gagne la manche");
+        System.out.println("Joueur" + (i+1) + " gagne");
         this.playerTab[i].round++;
         if (this.playerTab[i].round == roundWin){
-            System.out.print(this.playerTab[i].name + " gagne la partie");
+            hist.writeCount(playerTab);
+            hist.writeLog(hist.log);
             hist.writeWinGame();
             hist.writeLog(hist.log);
             System.exit(1);

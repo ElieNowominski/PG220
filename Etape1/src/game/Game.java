@@ -49,14 +49,18 @@ public class Game {
     private void run(){
         hist.writeStartRound();
         hist.writeLog(hist.log);
+        int gameNumber = 0;
         while(true){
             for(int i = 0;i<2;i++){
                 boolean coinIsFalse;
                 do {
                     input.column = playerTab[i].play(input, grid.getColumnNbr(),hist);
+                    hist.writePlayedCoin(input.column,i+1);
+                    hist.writeLog(hist.log);
                     if (grid.columnIsFull(input.column)) {
                         System.out.println("Erreur colonne pleine "+input.column);
                         hist.writeColumnErrorFull(input.column);
+                        hist.writeLog(hist.log);
                         coinIsFalse = true;
                     }
                     else{
@@ -64,17 +68,27 @@ public class Game {
                     }
                 }while(coinIsFalse);
                 grid.playCoin(input.column,grid.tabCoins, i);
-                hist.writePlayedCoin(input.column,i+1);
-                hist.writeLog(hist.log);
                 Display.display_grid(grid);
 
                 if(grid.tabIsFull()){
-                    System.out.println("Égalité");
+                    System.out.println("Egalite");
                     this.grid = new Grid(7,6);
                     hist.writeRoundVictory(playerTab[i].type,1, playerTab[i].round);
                     hist.writeLog(hist.log);
+                    hist.writeCount(playerTab);
+                    hist.writeLog(hist.log);
+                    hist.writeStartRound();
+                    hist.writeLog(hist.log);
                     Display.display_grid(this.grid);
-                    break;
+                    gameNumber++;
+                    if(i==(gameNumber%2)){
+                        if(i==1){
+                            i=0;
+                        }
+                        else{
+                            i=1;
+                        }
+                    }
                 }
                 if(this.win(playerTab[i].type)==playerTab[i].type){
                     this.grid = new Grid(7,6);
@@ -86,7 +100,15 @@ public class Game {
                     hist.writeStartRound();
                     hist.writeLog(hist.log);
                     Display.display_grid(this.grid);
-                    break;
+                    gameNumber++;
+                    if(i==(gameNumber%2)){
+                        if(i==1){
+                            i=0;
+                        }
+                        else{
+                            i=1;
+                        }
+                    }
                 }
             }
         }
@@ -122,7 +144,6 @@ public class Game {
         for (int i = x - xMin; i <= x + xMax; i++) {   //Victoire sur la colonne
             counter = this.modifyCounter(i,y,noPlayer,counter);
             if (counter == 4) {
-                System.out.println("victoire sur colonne");
                 return noPlayer;
             }
         }
@@ -130,7 +151,6 @@ public class Game {
         for (int i = y - yMin; i <= y + yMax; i++) {  //Victoire sur la ligne
             counter = this.modifyCounter(x,i,noPlayer,counter);
             if (counter == 4) {
-                System.out.println("victoire sur ligne");
                 return noPlayer;
             }
         }
@@ -142,7 +162,6 @@ public class Game {
         for (int i = y - yMin2, j = x - xMin2; i <= y + yMax2 && j <= x + xMax2; i++, j++) {   //Victoire sur la diagonale gauche vers droite
             counter = this.modifyCounter(j,i,noPlayer,counter);
             if (counter == 4) {
-                System.out.println("victoire sur diagonale de gauche vers droite");
                 return noPlayer;
             }
         }
@@ -154,16 +173,17 @@ public class Game {
         for (int i = y + yMax, j = x - xMin; i >= y - yMin && j <= x + xMax; i--, j++) {   //Victoire sur la diagonale droite vers gauche
             counter = this.modifyCounter(j,i,noPlayer,counter);
             if (counter == 4) {
-                System.out.println("victoire sur diagonale de droite vers gauche");
                 return noPlayer;
             }
         }
         return 0;
     }
     private void winRound(int i){
-        System.out.println(this.playerTab[i].name + " gagne la manche");
+        System.out.println("Joueur " + (i+1) + " gagne");
         this.playerTab[i].round++;
-        if (this.playerTab[i].round == 3){
+        if (this.playerTab[i].round == 2){
+            hist.writeCount(playerTab);
+            hist.writeLog(hist.log);
             System.out.print(this.playerTab[i].name + " gagne la partie");
             hist.writeWinGame();
             hist.writeLog(hist.log);
