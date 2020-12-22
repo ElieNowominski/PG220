@@ -46,7 +46,6 @@ public class Game {
     private void run(){
         hist.writeStartRound();
         hist.writeLog(hist.log);
-        int gameNumber = 0;
         while(true){
             for(int i = 0;i< input.players;i++){
                 boolean coinIsFalse;
@@ -76,14 +75,6 @@ public class Game {
                     hist.writeStartRound();
                     hist.writeLog(hist.log);
                     Display.display_grid(grid);
-                    /*if(i==(gameNumber%2)){
-                        if(i==1){
-                            i=0;
-                        }
-                        else{
-                            i=1;
-                        }
-                    }*/
                 }
                 if(this.win(playerTab[i].type)==playerTab[i].type){
                     this.grid = new Grid(input.column,input.line);
@@ -176,7 +167,7 @@ public class Game {
         return 0;
     }
     private void winRound(int i, int roundWin){
-        System.out.println("Joueur" + (i+1) + " gagne");
+        System.out.println("Joueur " + (i+1) + " gagne");
         this.playerTab[i].round++;
         if (this.playerTab[i].round == roundWin){
             hist.writeCount(playerTab, input.players);

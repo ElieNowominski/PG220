@@ -139,7 +139,6 @@ public class Input {
                      this.type = "ia:2";
                      this.name = input.substring(5);
                      playerIsFalse = false;
-                     System.out.println("Je suis IA2");
                  }
                  else if (input.substring(0, 6).equals("humain")) {
                      this.type = "humain";
