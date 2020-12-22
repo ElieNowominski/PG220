@@ -17,6 +17,10 @@ public class Display {
                     System.out.print("x ");
                 } else if (grid.tabCoins[i][j] == 2) {
                     System.out.print("o ");
+                } else if (grid.tabCoins[i][j] == 3) {
+                    System.out.print("+ ");
+                } else if (grid.tabCoins[i][j] == 4) {
+                    System.out.print("# ");
                 }
             }
             System.out.println("");

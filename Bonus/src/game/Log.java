@@ -56,6 +56,9 @@ public class Log {
     void writeGridSize(int column, int line){
         this.log = "La partie se joue sur une grille de taille " + line + " x " + column + " .";
     }
+    void writeNbPlayer(int players){
+        this.log = "Le nombre de joueur définit pour cette partie est " + players;
+    }
     void writeRoundNeeded(int round){
         this.log = "Le premier à " + round + " manches remporte la partie";
     }
@@ -66,7 +69,20 @@ public class Log {
         this.log = "Partie finie";
     }
     void writeStartRound(){this.log ="Manche commence";}
-    void writeCount(Player[] playerTab){this.log = "Score " +playerTab[0].round+ " - " + playerTab[1].round;}
+    void writeCount(Player[] playerTab, int players){
+        switch(players){
+            case 2:
+                this.log = "Score " +playerTab[0].round+ " - " + playerTab[1].round;
+                break;
+            case 3:
+                this.log = "Score " +playerTab[0].round+ " - " + playerTab[1].round + " - " + playerTab[2].round;
+                break;
+            case 4:
+                this.log = "Score " +playerTab[0].round+ " - " + playerTab[1].round + " - " + playerTab[2].round + " - " + playerTab[3].round;
+                break;
+        }
+
+    }
     void writeInputError(int player){
         this.log = "Erreur saisie Joueur " + player;
     }

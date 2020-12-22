@@ -27,23 +27,20 @@ public class Game {
         this.hist = new Log();  // Init log
         Log.delLog();
         this.input = new Input("","",0, 0, 0, 0, 0); // Init input
-        input.handleGridSize(hist);
         input.handleRoundToWin(hist);
+        input.handleNumberPlayer(hist);
+        input.handleGridSize(hist, input.players);
         this.grid = new Grid(input.column, input.line);  // Init grid
-        this.playerTab = new Player[2];  // Init player tab
-        System.out.println("Joueur 1?");
-        input.handleInput(1,hist);
+        this.playerTab = new Player[input.players];  // Init player tab
 
-        hist.writeNameType(input.name,input.type,1);
-        hist.writeLog(hist.log);
-        playerTab[0] = handleType(input.type,input.name,1);
+        for(int i=1;i<= input.players;i++){
+            System.out.println("Joueur "+i+"?");
+            input.handleInput(i,hist);
+            hist.writeNameType(input.name,input.type,i);
+            hist.writeLog(hist.log);
+            playerTab[i-1] = handleType(input.type,input.name,i);
+        }
 
-        System.out.println("Joueur 2?");
-        input.handleInput(2,hist);
-
-        hist.writeNameType(input.name,input.type,2);
-        hist.writeLog(hist.log);
-        playerTab[1] = handleType(input.type,input.name,2);
     }
 
     private void run(){
@@ -51,7 +48,7 @@ public class Game {
         hist.writeLog(hist.log);
         int gameNumber = 0;
         while(true){
-            for(int i = 0;i<2;i++){
+            for(int i = 0;i< input.players;i++){
                 boolean coinIsFalse;
                 do {
                     input.columnPlayed = playerTab[i].play(input, grid.getColumnNbr(),hist);
@@ -66,7 +63,7 @@ public class Game {
                         coinIsFalse = false;
                     }
                 }while(coinIsFalse);
-                grid.playCoin(input.columnPlayed,grid.tabCoins, i);
+                grid.playCoin(input.columnPlayed,grid.tabCoins, i+1);
                 Display.display_grid(grid);
 
                 if(grid.tabIsFull()){
@@ -74,38 +71,38 @@ public class Game {
                     this.grid = new Grid(input.column, input.line);
                     hist.writeRoundVictory(playerTab[i].type,1, playerTab[i].round);
                     hist.writeLog(hist.log);
-                    hist.writeCount(playerTab);
+                    hist.writeCount(playerTab, input.players);
                     hist.writeLog(hist.log);
                     hist.writeStartRound();
                     hist.writeLog(hist.log);
                     Display.display_grid(grid);
-                    if(i==(gameNumber%2)){
+                    /*if(i==(gameNumber%2)){
                         if(i==1){
                             i=0;
                         }
                         else{
                             i=1;
                         }
-                    }
+                    }*/
                 }
                 if(this.win(playerTab[i].type)==playerTab[i].type){
                     this.grid = new Grid(input.column,input.line);
                     hist.writeRoundVictory(playerTab[i].type,0,playerTab[i].round);
                     hist.writeLog(hist.log);
                     this.winRound(i,input.round);
-                    hist.writeCount(playerTab);
+                    hist.writeCount(playerTab, input.players);
                     hist.writeLog(hist.log);
                     hist.writeStartRound();
                     hist.writeLog(hist.log);
                     Display.display_grid(grid);
-                    if(i==(gameNumber%2)){
+                    /*if(i==(gameNumber%2)){
                         if(i==1){
                             i=0;
                         }
                         else{
                             i=1;
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -182,7 +179,7 @@ public class Game {
         System.out.println("Joueur" + (i+1) + " gagne");
         this.playerTab[i].round++;
         if (this.playerTab[i].round == roundWin){
-            hist.writeCount(playerTab);
+            hist.writeCount(playerTab, input.players);
             hist.writeLog(hist.log);
             hist.writeWinGame();
             hist.writeLog(hist.log);

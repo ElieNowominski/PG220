@@ -21,6 +21,28 @@ public class Input {
         this.columnPlayed = columnPlayed;
     }
 
+    void handleNumberPlayer(Log hist){
+        System.out.print("Indiquez le nombre de joueur (de 2 à 4) :  ");
+        while (true){
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextInt()) {
+                int players = sc.nextInt();
+                if(2 <= players && players<=4) {
+                    this.players = players;
+                    hist.writeNbPlayer(players);
+                    hist.writeLog(hist.log);
+                    break;
+                }
+                else{
+                    System.out.println("Vous devez entrez un nombre de joueur cohérent :  ");
+                }
+            }
+            else {
+                System.out.println("Vous devez entrez un nombre de joueur cohérent :  ");
+            }
+        }
+    }
+
     void handleRoundToWin(Log hist) {
         System.out.print("Indiquez le nombre de manche nécessaire pour gagner :  ");
         while (true){
@@ -37,8 +59,8 @@ public class Input {
         }
     }
 
-    void handleGridSize(Log hist){
-        System.out.println("Indiquez : Lignes Colonnes pour choisir la taille de la grille (2 4 minimum)");
+    void handleGridSize(Log hist, int players){
+        System.out.println("Indiquez : Lignes Colonnes pour choisir la taille de la grille ");
         while(true) {
             Scanner sc = new Scanner(System.in);
             if (sc.hasNextInt()) {
@@ -47,7 +69,7 @@ public class Input {
                 if (sc.hasNextInt()) {
                     this.column = sc.nextInt();
                     System.out.println("Colonne : " + column);
-                    if(testGridSize(column, line)){
+                    if(testGridSize(column, line, players)){
                         hist.writeGridSize(column, line);
                         hist.writeLog(hist.log);
                         break;
@@ -66,9 +88,9 @@ public class Input {
         }
     }
 
-    private boolean testGridSize(int column, int line){
-        if(column >= 4){
-            if((column * line >= 8 && ((column * line) % 2 == 0))){
+    private boolean testGridSize(int column, int line, int players){
+        if(column >= players*2){
+            if((column * line >= 4*players && ((column * line) % 2 == 0))){
                 return true;
             }
         }

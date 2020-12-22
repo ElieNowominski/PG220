@@ -25,12 +25,7 @@ public class Grid {
 
     public void playCoin(int column, int[][] tab, int player){
         int line = getLastPos(tab,column);
-        if (player == 1) {
-            tab[line - 1][column - 1] = 2;
-        }
-        else {
-            tab[line - 1][column - 1] = 1;
-        }
+        tab[line - 1][column - 1] = player;
         this.lastCoin[0] = line-1;
         this.lastCoin[1] = column-1;
     }
